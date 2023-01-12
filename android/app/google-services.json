@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "52129758918",
+    "project_id": "bd-fisiolung",
+    "storage_bucket": "bd-fisiolung.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52129758918:android:d54885ebd2396f08bd61c7",
+        "android_client_info": {
+          "package_name": "com.example.ausculta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52129758918-i9g0odnr7qenji7bkuq04kjfo3us7dqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUMAD7luZk1BAdrivJVFGBn3PBGVNWTUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52129758918-i9g0odnr7qenji7bkuq04kjfo3us7dqc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
