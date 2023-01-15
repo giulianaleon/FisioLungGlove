@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:convert';import 'package:firebase_core/firebase_core.dart';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:oscilloscope/oscilloscope.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wave_progress_bars/wave_progress_bars.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key, this.device}) : super(key: key);
@@ -30,10 +30,6 @@ class _Ausculta extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      print("completed");
-      setState(() {});
-    });
     isReady = false;
     ausculta = false;
     connectToDevice();
@@ -92,6 +88,19 @@ class _Ausculta extends State<HomePage> {
     }
   }
 
+  postData() async{
+    try{   //200 - sucesso
+      var response = await http.post(Uri.parse("https://jsonplaceholder.typicode.com/posts"), body:{
+        "vetor_vibração": valoresSensor,
+        "vibração_media": 12,          //alterar
+        "tempo_total": 360             //alterar
+      });
+      print (response.body);
+    }catch (e){
+      print(e);
+    }
+  }
+
   Future<bool> _onWillPop() {
     return showDialog(
         context: context,
@@ -137,27 +146,27 @@ class _Ausculta extends State<HomePage> {
 
   var selectedCurrency, selectedType;
 
-  void registrar() async {
-
-    FirebaseFirestore.instance.collection('sessao').add({
-      'frequencia': valoresSensor,
-      'data' : Timestamp.now(),
-    });
-
-    Fluttertoast.showToast(
-        msg: "Registrado com sucesso!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.lightGreen,
-        textColor: Colors.white,
-        fontSize: 16.0);
-
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => Menu()),
-    // );
-  }
+  // void registrar() async {
+  //
+  //   // FirebaseFirestore.instance.collection('sessao').add({
+  //   //   'frequencia': valoresSensor,
+  //   //   'data' : Timestamp.now(),
+  //   // });
+  //
+  //   Fluttertoast.showToast(
+  //       msg: "Registrado com sucesso!",
+  //       toastLength: Toast.LENGTH_SHORT,
+  //       gravity: ToastGravity.CENTER,
+  //       timeInSecForIosWeb: 1,
+  //       backgroundColor: Colors.lightGreen,
+  //       textColor: Colors.white,
+  //       fontSize: 16.0);
+  //
+  //   // Navigator.push(
+  //   //   context,
+  //   //   MaterialPageRoute(builder: (context) => Menu()),
+  //   // );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -314,7 +323,8 @@ class _Ausculta extends State<HomePage> {
                                     onPressed: () {
                                       setState((){
                                         ausculta = false;
-                                        registrar();
+                                        // registrar();
+                                        postData();
                                       });
                                     },
                                     style: TextButton.styleFrom(

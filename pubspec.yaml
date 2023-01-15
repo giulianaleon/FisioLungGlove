@@ -35,14 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   sqflite: ^1.1.5
-  http: ^0.13.4
+  http: ^0.13.5
   fluttertoast: ^8.0.8
   flutter_bluetooth_serial: ^0.4.0
   scoped_model: ^2.0.0-nullsafety.0
   oscilloscope: ^0.2.0+1
-  cloud_firestore: ^4.3.1
-  firebase_core: ^2.4.1
-  audioplayers: ^0.20.1
   bloc_pattern: ^3.0.1
   rflutter_alert: ^2.0.4
   flutter_audio_waveforms: ^1.2.1+6
